@@ -1,0 +1,61 @@
+body {
+  height: 100%;
+  background: url("../pic/wood.jpg") no-repeat top/cover;
+  font-family: fantasy;
+  color: #120101;
+}
+
+.btnStyle {
+  background: #915151;
+}
+
+.btnStyle:hover {
+  background: #120101;
+}
+
+.card-pic {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-pic:hover img {
+  -webkit-transform: scale(1.2, 1.2);
+          transform: scale(1.2, 1.2);
+}
+
+.card-pic:hover .text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.text {
+  color: #ede0e0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: none;
+  background-color: rgba(41, 39, 36, 0.7);
+}
+
+img {
+  height: 250px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  -webkit-transition: 0.7s 0.3s ease-out;
+  transition: 0.7s 0.3s ease-out;
+}
+/*# sourceMappingURL=all.css.map */

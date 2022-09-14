@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <button type="button" @click="addNum()">累加數值{{num}}</button>
+      <br />
+      computed的doubleNum:{{doubleNum}}
+      <br />
+      樣板字面值:{{dollarSign(num)}}
+      <p v-for="item in person">price:{{count(item.dob.age*10)}}</p>
+      <br />
+      <select class="form-control" v-model="genderFilter">
+        <option disabled selected value="">請選擇</option>
+        <option value="female">female</option>
+        <option value="male">male</option>
+      </select>
+      {{genderFilter}}
+      <br />
+      <!-- 過濾系統 -->
+     <img :src="item.picture.large" alt="" v-for="item in filterData">
+    </div>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            text: "Welcome",
+            num: 0,
+            person: [],
+            num2: 1,
+            genderFilter:'',
+          };
+        },
+        methods: {
+          getText() {
+            console.log(this.text);
+          },
+          addNum() {
+            this.num++;
+          },
+          //俗稱filter
+          dollarSign(item) {
+            return `total:$${item}dollars`;
+          },
+          getRandomPerson() {
+            axios.get("https://randomuser.me/api/?results=5")
+            .then((res) => {
+              console.log(res);
+              this.person = res.data.results;
+            });
+          },
+          count(item) {
+            return `$${item}`;
+          },
+        },
+        computed: {
+          doubleNum() {
+            //可以帶入比較num num2的差別
+            return this.num * 2;
+          },
+          filterData(){
+            let newArray=this.person.filter((item)=>{
+             return item.gender===this.genderFilter;
+            });
+            return newArray;
+          }
+        },
+        mounted() {
+          console.log(this.text);
+          this.getText();
+          this.addNum();
+          this.getRandomPerson();
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

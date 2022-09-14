@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="text" />
+      {{text}} {{typeof text}}
+      <br />
+      <input type="text" v-model.number="cnt" />
+      {{cnt}} {{typeof cnt}}
+      <hr />
+      <h3>Select</h3>
+      <select class="form-control" v-model="selected">
+        <option disabled value="">who</option>
+        <option value="Joe">Joe</option>
+        <option value="Kimmy">Kimmy</option>
+        <option value="Sandy">Sandy</option>
+      </select>
+      <p>I love {{selected}}</p>
+      <br />
+      <select class="form-control" v-model="selected2">
+        <option disabled value="">season</option>
+        <option :value="item" v-for="item in selectData">{{item}}</option>
+      </select>
+      <p>I love {{selected2}}</p>
+      <h3>
+        <ul>
+          <li v-for="(item,key) in arrayData">
+            {{key}}-{{item.name}} {{item.age}}
+          </li>
+          <hr>
+          <li v-for="(item,key) in objectData">
+            {{key}}-{{item.name}} {{item.age}}
+          </li>
+        </ul>
+      </h3>
+    </div>
+
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            text: "",
+            cnt: "",
+            selected: "",
+            selected2: "",
+            selectData: ["Spring", "Summer", "Fall", "Winter"],
+            arrayData: [
+              {
+                name: "J",
+                age: 12,
+              },
+              {
+                name: "K",
+                age: 21,
+              },
+            ],
+            objectData: {
+              one: { 
+                name: "F",
+                age: 5 },
+              two: {
+                name: "A",
+                age: 8,},
+            },
+          };
+        },
+        methods: {},
+        mounted() {},
+      }).mount("#app");
+    </script>
+  </body>
+</html>

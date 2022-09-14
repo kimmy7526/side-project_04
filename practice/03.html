@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <a href="#" @click.prevent="changeCash(person)">+2500</a>
+      {{person.cash}}
+      <i class="bi bi-gender-female" v-if="person.gender==='female'"></i>
+      <i class="bi bi-gender-male" v-else-if="person.gender==='male'"></i>
+      <button type="button" class="btn btn-outline-primary" :class="{active:isActive}" @click="isActive=!isActive">Primary</button>
+     
+
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" :class="{active:isTrue==='Home'}" @click="isTrue='Home'">Home</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" :class="{active:isTrue==='Profile'}" @click="isTrue='Profile'">Profile</button>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane" :class="{active:isTrue==='Home'}">Home</div>
+        <div class="tab-pane" :class="{active:isTrue==='Profile'}">Profile</div>
+      </div>
+    </div>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            person: {
+              gender: " male",
+              cash: 0,
+            },
+            people: [
+              {
+                name: "J",
+                gender: "male",
+              },
+              {
+                name: "K",
+                gender: "female",
+              },
+            ],
+            isActive:true,
+            isTrue:'Home',
+          };
+        },
+        methods: {
+          changeCash(item) {
+            item.cash += 2500;
+          },
+        },
+        mounted() {},
+      }).mount("#app");
+    </script>
+  </body>
+</html>

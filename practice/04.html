@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input type="number" v-model.number="num" />
+      <input type="number" v-model.number="num2" />
+      <br />
+      <button type="button" v-for="item in count" @click="c=item">
+        {{item}}
+      </button>
+      <br />
+      <button type="button" @click="countAns(num,num2,c,ans)">count</button>
+      <br />
+      <p>Ans:{{ans}}</p>
+    </div>
+
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            num: 1,
+            num2: 5,
+            count: ["+", "-", "*", "/"],
+            c: "",
+            ans: 0,
+          };
+        },
+        methods: {
+          countAns(a,b,c,d) {
+            if (c === "+") {
+               d=a+b;
+               return d;
+            } else if (c === "-") {
+            } else if (c === "*") {
+            } else {
+            }
+          },
+        },
+        mounted() {},
+      }).mount("#app");
+    </script>
+  </body>
+</html>

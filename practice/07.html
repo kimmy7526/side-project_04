@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDoList</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app">
+      <label>ToDoList</label>
+      <input type="text" v-model="text" />
+      <button type="button" @click="addItem">add</button>
+      <ol>
+        <li v-for="item in todolist">
+          {{item.text}}
+          <button type="button" @click="editItem(item)">edit</button>
+          <button type="button" @click="removeItem(item)">remove</button>
+        </li>
+      </ol>
+
+      <input type="text" v-model="temp.text" />
+      <button type="button" @click="checkItem(temp)">check</button>
+    </div>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            text: "",
+            todolist: [],
+            temp: {},
+          };
+        },
+        methods: {
+          addItem() {
+            this.todolist.push({
+              text: this.text,
+              id: this.todolist.length,
+            });
+            this.text = "";
+          },
+          removeItem(item) {
+            let index = this.todolist.findIndex((value) => {
+              return value.id === item.id;
+            });
+            console.log(index);
+            this.todolist.splice(index, 1);
+          },
+          editItem(item) {
+            this.temp = { ...item };
+          },
+          checkItem() {
+            let index = this.todolist.findIndex((value) => {
+              return value.id === this.temp.id;
+            });
+            this.todolist[index] = this.temp;
+            this.temp = {};
+          },
+        },
+        mounted() {},
+      }).mount("#app");
+    </script>
+  </body>
+</html>
