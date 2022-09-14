@@ -1,17 +1,42 @@
 $dark: rgb(18, 1, 1);
 $light: rgb(237, 224, 224);
-$theme: rgb(145, 81, 81);
+$gray: rgb(186, 178, 178);
+$theme: #a18e70;
+$theme2: #e0c68b;
+
 body {
   height: 100%;
   background: url("../pic/wood.jpg") no-repeat top/cover;
   font-family: fantasy;
   color: $dark;
 }
-.btnStyle {
+.btnStyle01 {
+  border: 0px;
+  width: 30%;
   background: $theme;
+  transition: 0.3s;
   &:hover {
-    background: $dark;
+    background: $theme2;
   }
+}
+.btnStyle02 {
+  border: 0px;
+  background: $gray;
+}
+.btnStyle03 {
+  background: $light;
+  width: 50px;
+}
+
+img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: 0.5s ease-out;
+}
+.col{
+  margin: 15px 0;
 }
 .card-pic {
   position: relative;
@@ -24,39 +49,19 @@ body {
     flex-direction: column;
     justify-content: center;
   }
+  .text {
+    color: $light;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    background-color: rgba(41, 39, 36, 0.7);
+    align-items: center;
+  }
 }
-.text {
-  color: $light;
-  // text-align: center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  display: none;
-  background-color: rgba(41, 39, 36, 0.7);
+
+.modal-content {
+  background: $gray;
 }
-img {
-  height: 250px;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: 0.7s 0.3s ease-out;
-}
-// .modal-footer {
-//   table {
-//     width: 300px;
-//     height: 50px;
-//     td {
-//       border: 2px solid $dark;
-//       &:nth-child(1),
-//       &:nth-child(3) {
-//         cursor: pointer;
-//         &:hover {
-//           background-color: $light;
-//         }
-//       }
-//     }
-//   }
-// }

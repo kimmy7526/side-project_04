@@ -5,12 +5,41 @@ body {
   color: #120101;
 }
 
-.btnStyle {
-  background: #915151;
+.btnStyle01 {
+  border: 0px;
+  width: 30%;
+  background: #a18e70;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
-.btnStyle:hover {
-  background: #120101;
+.btnStyle01:hover {
+  background: #e0c68b;
+}
+
+.btnStyle02 {
+  border: 0px;
+  background: #bab2b2;
+}
+
+.btnStyle03 {
+  background: #ede0e0;
+  width: 50px;
+}
+
+img {
+  height: 250px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  -webkit-transition: 0.5s ease-out;
+  transition: 0.5s ease-out;
+}
+
+.col {
+  margin: 15px 0;
 }
 
 .card-pic {
@@ -36,26 +65,21 @@ body {
           justify-content: center;
 }
 
-.text {
+.card-pic .text {
   color: #ede0e0;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  margin: auto;
   display: none;
   background-color: rgba(41, 39, 36, 0.7);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-img {
-  height: 250px;
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
-  -webkit-transition: 0.7s 0.3s ease-out;
-  transition: 0.7s 0.3s ease-out;
+.modal-content {
+  background: #bab2b2;
 }
 /*# sourceMappingURL=all.css.map */

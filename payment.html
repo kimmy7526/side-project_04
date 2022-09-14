@@ -29,8 +29,15 @@
         for (item, key) in array
         computed
         千分位
-        Npm:vue+bs+axios+github
-      spa-->
+        >0
+        規則式
+        Npm:vue+bs+axios
+        component
+        compute total
+        spa
+    -->
+  <!-- Q 購物車商品的數量即使不按確認按鈕也會儲存?v-model? 商品數量先暫存在coount，再存在selectedItem -->
+  <!-- Q modal的資料如何引入?將選擇的商品另存在selectedItem  -->
   <!-- 
         1.商品頁面:搜尋 filter[name price]
         2.支付金額+支付方式:CRUD total 
@@ -39,7 +46,7 @@
   <body>
     <div id="shop" class="shop container-fluid">
       <!-- step01 -->
-      <div id="search" class="row">
+      <!-- <div id="search" class="row">
         <form class="d-flex offset-8 col-4" role="search">
           <input
             class="form-control me-2"
@@ -48,24 +55,25 @@
             aria-label="Search"
             v-model="text"
           />
-          <button type="submit" class="btn" @click="">搜尋</button>
+          <button type="submit" class="btnStyle" @click="">搜尋</button>
         </form>
-      </div>
+      </div> -->
 
       <div id="beverage" class="beverage row row-cols-2 row-cols-lg-3">
         <div class="col" v-for="item in beverage">
           <div class="card h-100">
-            <a href="#item" data-bs-toggle="modal">
+            <a href="#item" data-bs-toggle="modal" @click="findItem(item)">
               <div class="card-pic">
-                <img :src="item.image" alt=""/>
+                <img :src="item.image" :alt="item.name" />
                 <div class="text">
                   <h3>{{item.name}}</h3>
-                  <p>耍廢的好夥伴</p>
+                  <p>新品上市</p>
                   <button
                     type="submit"
-                    class="btn"
+                    class="btnStyle01"
+                    @click="findItem(item)"
                   >
-                    加入購物車
+                    購買
                   </button>
                 </div>
               </div>
@@ -74,35 +82,54 @@
         </div>
       </div>
 
-         <!-- modal-->
-         <div class="modal fade" id="item" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h3 class="modal-title" id="exampleModalLabel">草莓冰沙</h3>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                      <img src="pic/item01.jpg" alt="" width="300">
-                      <p>$40 <span>$55</span></p>
-                  </div>
-                  <div class="modal-footer">
-                      <table>
-                          <tr>
-                              <td>-</td>
-                              <td v-modal="">{{}}</td>
-                              <td>+</td>
-                          </tr>
-                      </table>
-                      <button type="button" class="btn">加入購物車</button>
-                  </div>
+      <!-- modal-->
+      <div
+        class="modal fade"
+        id="item"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="exampleModalLabel">
+                {{selectedItem.name}}
+              </h3>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <img :src="selectedItem.image" alt="selectedItem.name" />
+              <p>${{selectedItem.price}}</p>
+            </div>
+            <div class="modal-footer">
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btnStyle03" @click="count--">
+                  -
+                </button>
+                <input type="tel" v-model="count" />
+                <button type="button" class="btnStyle03" @click="count++">
+                  +
+                </button>
               </div>
+              <button
+                type="button"
+                class="btnStyle01"
+                @click="addItem(selectedItem)"
+              >
+                加入購物車
+              </button>
+            </div>
           </div>
+        </div>
       </div>
-      
-      <button type="button" class="btn" @click="">
-        前往結帳
-      </button>
+
+      <button type="button" class="btnStyle02" @click="filterItem">前往結帳</button>
 
       <!-- step02 -->
       <div id="step02" class="container-fluid">
@@ -132,9 +159,7 @@
           <li>商品總金額:${{total}}</li>
         </ul>
 
-        <button type="button" class="btn" @click="">
-          確認付款
-        </button>
+        <button type="button" class="btnStyle02" @click="">確認付款</button>
       </div>
       <!-- step04 -->
       <div id="step04">
@@ -155,7 +180,8 @@
               "檸檬氣泡飲",
               "長島冰茶",
             ],
-            selectedItem:[],
+            selectedItem: {},
+            count: 0,
             person: {},
             total: 0,
             text: "",
@@ -169,16 +195,26 @@
               item.name = this.itemName[index];
             });
           },
-          searchItem() {
-            let searchArray = this.itemName.filter((item) => {
-              if (this.text === item) return true;
-            });
-            // 搜尋失敗
-            if (!searchArray) {
-              return this.beverage;
-            }
-            return searchArray;
+          findItem(item) {
+            this.selectedItem = item;
           },
+          addItem(item) {
+            item.count = this.count;
+            this.count = 0;
+          },
+          filterItem(){
+
+          },
+          // searchItem() {
+          //   let searchArray = this.itemName.filter((item) => {
+          //     if (this.text === item) return true;
+          //   });
+          //   // 搜尋失敗
+          //   if (!searchArray) {
+          //     return this.beverage;
+          //   }
+          //   return searchArray;
+          // },
         },
         mounted() {
           for (let i = 0; i < 6; i++) {
