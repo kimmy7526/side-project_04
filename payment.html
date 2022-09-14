@@ -24,27 +24,15 @@
   </head>
   <!-- 
         CRUD
-        過濾類別 
-        computed
-        千分位
-        >0
         規則式
-        router
         Npm:vue+bs+axios
-        component 房價的計算過程 定價ｘ房間折扣ｘ飯店折扣
-        compute total
     -->
   <!-- Q 購物車商品的數量即使不按確認按鈕也會儲存?v-model? 商品數量先暫存在coount，再存在selectedItem -->
   <!-- Q modal的資料如何引入?將選擇的商品另存在selectedItem  -->
-  <!-- 
-        1.商品頁面
-        2.支付金額+支付方式 
-        3.使用者資訊
-        4.完成-->
-  <!-- 完成作品
-        文章
-        筆記
-        影片 -->
+  <!--
+     router
+  Vue Cli -->
+
   <body>
     <div id="shop" class="shop container-fluid">
       <!-- shop -->
@@ -127,10 +115,10 @@
       <div id="step01" class="container-fluid">
         <ol>
           <li v-for="item in beverage2">
-            <p
-              >{{item.name}} : ${{item.price}} * {{item.count}}=
-              ${{item.price*item.count}}</p
-            >
+            <p>
+              {{item.name}} : ${{item.price}} * {{item.count}}=
+              ${{item.price*item.count}}
+            </p>
           </li>
         </ol>
         <select class="form-control" v-model="payment">
@@ -138,7 +126,9 @@
           <option :value="item" v-for="item in paymentMethods">{{item}}</option>
         </select>
         <div class="row">
-          <button type="button" class="btnStyle02" @click="">確認商品</button>
+          <button type="button" class="btnStyle02" @click="finalPrice">
+            確認商品
+          </button>
         </div>
       </div>
 
@@ -147,7 +137,6 @@
         <h1>確認付款資訊</h1>
         <h2>買家資訊</h2>
         <ol>
-          <!-- <li>名稱:{{person.name}}</li> -->
           <li>手機:{{person.cell}}</li>
           <li>信箱:{{person.email}}</li>
         </ol>
@@ -212,9 +201,10 @@
           },
         },
         computed: {
-          itemPrice() {
-                // this.total+= item.price * item.count;
-                // return item.price * item.count;
+          finalPrice() {
+            this.beverage2.forEach((item) => {
+              this.total+= item.price * item.count;              
+            });
           },
         },
         mounted() {
