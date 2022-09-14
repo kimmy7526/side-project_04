@@ -1,3 +1,8 @@
+.btnStyle01, .btnStyle02, .btnStyle03 {
+  border: 0px;
+  background: #bab2b2;
+}
+
 body {
   height: 100%;
   background: url("../pic/wood.jpg") no-repeat top/cover;
@@ -6,11 +11,11 @@ body {
 }
 
 .btnStyle01 {
-  border: 0px;
   width: 30%;
   background: #a18e70;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+  border-radius: 5px;
 }
 
 .btnStyle01:hover {
@@ -18,17 +23,17 @@ body {
 }
 
 .btnStyle02 {
-  border: 0px;
-  background: #bab2b2;
+  width: 300px;
+  margin: auto;
 }
 
 .btnStyle03 {
-  background: #ede0e0;
-  width: 50px;
+  width: 100px;
+  height: 50px;
 }
 
 img {
-  height: 300px;
+  height: 350px;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
@@ -42,17 +47,17 @@ img {
   margin: 15px 0;
 }
 
-.card-pic {
+.col .card-pic {
   position: relative;
   overflow: hidden;
 }
 
-.card-pic:hover img {
+.col .card-pic:hover img {
   -webkit-transform: scale(1.2, 1.2);
           transform: scale(1.2, 1.2);
 }
 
-.card-pic:hover .text {
+.col .card-pic:hover .text {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -65,7 +70,7 @@ img {
           justify-content: center;
 }
 
-.card-pic .text {
+.col .card-pic .text {
   color: #ede0e0;
   position: absolute;
   top: 0;
@@ -80,6 +85,17 @@ img {
 }
 
 .modal-content {
-  background: #bab2b2;
+  background: #ede0e0;
+  text-align: center;
+}
+
+.modal-content img {
+  border-radius: 30px;
+}
+
+.modal-content input {
+  border: 0px;
+  width: 100px;
+  text-align: center;
 }
 /*# sourceMappingURL=all.css.map */

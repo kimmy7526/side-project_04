@@ -3,65 +3,86 @@ $light: rgb(237, 224, 224);
 $gray: rgb(186, 178, 178);
 $theme: #a18e70;
 $theme2: #e0c68b;
-
+%btn{
+  border: 0px;
+  background: $gray;
+  
+}
 body {
   height: 100%;
   background: url("../pic/wood.jpg") no-repeat top/cover;
   font-family: fantasy;
   color: $dark;
+
 }
 .btnStyle01 {
-  border: 0px;
+  @extend %btn;
   width: 30%;
   background: $theme;
   transition: 0.3s;
+  border-radius: 5px;
   &:hover {
     background: $theme2;
   }
 }
 .btnStyle02 {
-  border: 0px;
-  background: $gray;
+  @extend %btn;
+  width: 300px;
+  margin: auto
 }
 .btnStyle03 {
-  background: $light;
-  width: 50px;
+  @extend %btn;
+  width: 100px;
+  height: 50px;
 }
 
+
 img {
-  height: 300px;
+  height: 350px;
   width: 100%;
   object-fit: cover;
   object-position: center;
   transition: 0.5s ease-out;
+
 }
 .col {
   margin: 15px 0;
-}
-.card-pic {
-  position: relative;
-  overflow: hidden;
-  &:hover img {
-    transform: scale(1.2, 1.2);
-  }
-  &:hover .text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .text {
-    color: $light;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: none;
-    background-color: rgba(41, 39, 36, 0.7);
-    align-items: center;
+  .card-pic {
+    position: relative;
+    overflow: hidden;
+    &:hover img {
+      transform: scale(1.2, 1.2);
+    }
+    &:hover .text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .text {
+      color: $light;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: none;
+      background-color: rgba(41, 39, 36, 0.7);
+      align-items: center;
+    }
   }
 }
 
-.modal-content {
-  background: $gray;
-}
+
+  .modal-content{
+    background: $light;
+    text-align: center;
+    img{
+      border-radius: 30px;
+    }
+    input{
+      border: 0px;
+      width: 100px;
+      text-align: center;
+    }
+  }
+

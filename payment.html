@@ -25,12 +25,11 @@
   <!-- 
         CRUD
         過濾類別 
-        select支付方式
-        for (item, key) in array
         computed
         千分位
         >0
         規則式
+        router
         Npm:vue+bs+axios
         component 房價的計算過程 定價ｘ房間折扣ｘ飯店折扣
         compute total
@@ -38,9 +37,9 @@
   <!-- Q 購物車商品的數量即使不按確認按鈕也會儲存?v-model? 商品數量先暫存在coount，再存在selectedItem -->
   <!-- Q modal的資料如何引入?將選擇的商品另存在selectedItem  -->
   <!-- 
-        1.商品頁面:搜尋 filter[name price]
-        2.支付金額+支付方式:CRUD total 
-        3.使用者資訊:買家+商品
+        1.商品頁面
+        2.支付金額+支付方式 
+        3.使用者資訊
         4.完成-->
   <!-- 完成作品
         文章
@@ -48,8 +47,7 @@
         影片 -->
   <body>
     <div id="shop" class="shop container-fluid">
-      <!-- step01 -->
-
+      <!-- shop -->
       <div id="beverage" class="beverage row row-cols-2 row-cols-lg-3">
         <div class="col" v-for="item in beverage">
           <div class="card h-100">
@@ -83,9 +81,9 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h3 class="modal-title" id="exampleModalLabel">
+              <h2 class="modal-title" id="exampleModalLabel">
                 {{selectedItem.name}}
-              </h3>
+              </h2>
               <button
                 type="button"
                 class="btn-close"
@@ -95,7 +93,7 @@
             </div>
             <div class="modal-body">
               <img :src="selectedItem.image" alt="selectedItem.name" />
-              <p>${{selectedItem.price}}</p>
+              <h3>${{selectedItem.price}}</h3>
             </div>
             <div class="modal-footer">
               <div class="btn-group" role="group" aria-label="Basic example">
@@ -109,7 +107,7 @@
               </div>
               <button
                 type="button"
-                class="btnStyle01"
+                class="btnStyle03"
                 @click="addItem(selectedItem)"
               >
                 加入購物車
@@ -119,21 +117,29 @@
         </div>
       </div>
 
-      <button type="button" class="btnStyle02" @click="filterItem">
-        前往結帳
-      </button>
+      <div class="row">
+        <button type="button" class="btnStyle02" @click="filterItem">
+          前往結帳
+        </button>
+      </div>
 
       <!-- step01 -->
       <div id="step01" class="container-fluid">
         <ol>
           <li v-for="item in beverage2">
-            <b>{{item.name}} : {{item.count}} * ${{item.price}} = ${{itemPrice}}</b>
+            <p
+              >{{item.name}} : ${{item.price}} * {{item.count}}=
+              ${{item.price*item.count}}</p
+            >
           </li>
         </ol>
         <select class="form-control" v-model="payment">
           <option disabled selected value="">請選擇支付方式</option>
           <option :value="item" v-for="item in paymentMethods">{{item}}</option>
         </select>
+        <div class="row">
+          <button type="button" class="btnStyle02" @click="">確認商品</button>
+        </div>
       </div>
 
       <!-- step02 -->
@@ -141,7 +147,7 @@
         <h1>確認付款資訊</h1>
         <h2>買家資訊</h2>
         <ol>
-          <li>名稱:{{person.name}}</li>
+          <!-- <li>名稱:{{person.name}}</li> -->
           <li>手機:{{person.cell}}</li>
           <li>信箱:{{person.email}}</li>
         </ol>
@@ -150,8 +156,9 @@
           <li>付款方式:{{payment}}</li>
           <li>商品總金額:${{total}}</li>
         </ul>
-
-        <button type="button" class="btnStyle02" @click="">確認付款</button>
+        <div class="row">
+          <button type="button" class="btnStyle02" @click="">確認付款</button>
+        </div>
       </div>
       <!-- step03 -->
       <div id="step03">
@@ -178,7 +185,7 @@
             beverage2: [],
             paymentMethods: ["貨到付款", "刷卡付費"],
             payment: "",
-            total:0,
+            total: 0,
           };
         },
         methods: {
@@ -189,7 +196,7 @@
           },
           findItem(item) {
             this.selectedItem = item;
-            this.count=0;
+            this.count = 0;
           },
           addItem(item) {
             item.count = this.count;
@@ -206,11 +213,8 @@
         },
         computed: {
           itemPrice() {
-            // if (JSON.stringify(this.beverage2) !== "{}") {
-            //     this.total+= item.price * item.count;
-            //     return item.price * item.count;
-            // } 
-            return 0;
+                // this.total+= item.price * item.count;
+                // return item.price * item.count;
           },
         },
         mounted() {
