@@ -22,16 +22,10 @@
     <link rel="stylesheet" href="scss/all.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
   </head>
-  <!-- 
-        CRUD
-        規則式
-        Npm:vue+bs+axios
-    -->
+
   <!-- Q 購物車商品的數量即使不按確認按鈕也會儲存?v-model? 商品數量先暫存在coount，再存在selectedItem -->
   <!-- Q modal的資料如何引入?將選擇的商品另存在selectedItem  -->
-  <!--
-     router
-  Vue Cli -->
+
 
   <body>
     <div id="shop" class="shop container-fluid">
@@ -43,7 +37,7 @@
               <div class="card-pic">
                 <img :src="item.image" :alt="item.name" />
                 <div class="text">
-                  <h3>{{item.name}}</h3>
+                  <h2>{{item.name}}</h2>
                   <p>新品上市</p>
                   <button
                     type="submit"
@@ -69,9 +63,9 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h2 class="modal-title" id="exampleModalLabel">
+              <h1 class="modal-title" id="exampleModalLabel">
                 {{selectedItem.name}}
-              </h2>
+              </h1>
               <button
                 type="button"
                 class="btn-close"
@@ -112,7 +106,8 @@
       </div>
 
       <!-- step01 -->
-      <div id="step01" class="container-fluid">
+      <div id="step01" class="container-fluid" v-show="openStep[0]">
+        <h1>商品資訊</h1>
         <ol>
           <li v-for="item in beverage2">
             <p>
@@ -126,14 +121,14 @@
           <option :value="item" v-for="item in paymentMethods">{{item}}</option>
         </select>
         <div class="row">
-          <button type="button" class="btnStyle02" @click="finalPrice">
+          <button type="button" class="btnStyle02" @click="finalPrice;openStep[1]=true">
             確認商品
           </button>
         </div>
       </div>
 
       <!-- step02 -->
-      <div id="step02" class="container-fluid">
+      <div id="step02" class="container-fluid" v-show="openStep[1]">
         <h1>確認付款資訊</h1>
         <h2>買家資訊</h2>
         <ol>
@@ -146,11 +141,12 @@
           <li>商品總金額:${{total}}</li>
         </ul>
         <div class="row">
-          <button type="button" class="btnStyle02" @click="">確認付款</button>
+          <button type="button" class="btnStyle02" @click="openStep[2]=true">確認付款</button>
         </div>
       </div>
+
       <!-- step03 -->
-      <div id="step03">
+      <div id="step03" v-show="openStep[2]">
         <h1>您的訂單已成立，感謝您的購買!</h1>
       </div>
     </div>
@@ -175,6 +171,7 @@
             paymentMethods: ["貨到付款", "刷卡付費"],
             payment: "",
             total: 0,
+            openStep:[false,false,false],
           };
         },
         methods: {
@@ -198,6 +195,7 @@
               }
             });
             console.log(this.beverage2);
+            this.openStep[0]=true;
           },
         },
         computed: {
@@ -205,7 +203,7 @@
             this.beverage2.forEach((item) => {
               this.total+= item.price * item.count;              
             });
-          },
+          }
         },
         mounted() {
           for (let i = 0; i < 6; i++) {

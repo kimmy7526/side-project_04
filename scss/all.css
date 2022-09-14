@@ -1,6 +1,7 @@
 .btnStyle01, .btnStyle02, .btnStyle03 {
   border: 0px;
   background: #bab2b2;
+  height: 50px;
 }
 
 body {
@@ -8,6 +9,7 @@ body {
   background: url("../pic/wood.jpg") no-repeat top/cover;
   font-family: fantasy;
   color: #120101;
+  padding: 25px 0px;
 }
 
 .btnStyle01 {
@@ -23,13 +25,18 @@ body {
 }
 
 .btnStyle02 {
-  width: 300px;
-  margin: auto;
+  width: 200px;
+  margin: 10px auto;
 }
 
 .btnStyle03 {
   width: 100px;
-  height: 50px;
+}
+
+#step01, #step02, #step03 {
+  background: linear-gradient(25deg, #a18e70, #ede0e0);
+  border-radius: 5px;
+  margin: 25px;
 }
 
 img {
@@ -41,6 +48,15 @@ img {
      object-position: center;
   -webkit-transition: 0.5s ease-out;
   transition: 0.5s ease-out;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 900;
+}
+
+p, li {
+  font-size: 25px;
 }
 
 .col {

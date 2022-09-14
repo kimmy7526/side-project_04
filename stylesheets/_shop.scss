@@ -6,14 +6,14 @@ $theme2: #e0c68b;
 %btn{
   border: 0px;
   background: $gray;
-  
+  height: 50px;
 }
 body {
   height: 100%;
   background: url("../pic/wood.jpg") no-repeat top/cover;
   font-family: fantasy;
   color: $dark;
-
+  padding: 25px 0px;
 }
 .btnStyle01 {
   @extend %btn;
@@ -27,15 +27,18 @@ body {
 }
 .btnStyle02 {
   @extend %btn;
-  width: 300px;
-  margin: auto
+  width: 200px;
+  margin: 10px auto;
 }
 .btnStyle03 {
   @extend %btn;
   width: 100px;
-  height: 50px;
 }
-
+#step01,#step02,#step03{
+  background:linear-gradient(25deg,$theme,$light);
+  border-radius: 5px;
+  margin: 25px;
+}
 
 img {
   height: 350px;
@@ -44,6 +47,13 @@ img {
   object-position: center;
   transition: 0.5s ease-out;
 
+}
+h1{
+  text-align: center;
+  font-weight: 900;
+}
+p,li{
+  font-size: 25px;
 }
 .col {
   margin: 15px 0;
